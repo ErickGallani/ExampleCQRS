@@ -17,10 +17,10 @@ namespace ExampleCQRS.Domain.ValueObjects
             this.LastName = lastName;
         }
 
-        public string GetFirstName() =>
+        public string First => 
             this.FirstName;
 
-        public string GetLastName() =>
+        public string Last => 
             this.LastName;
 
         public override IValidator<Name> GetValidator() =>

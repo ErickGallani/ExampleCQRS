@@ -11,15 +11,24 @@ namespace ExampleCQRS.Repository.Mappings
         {
             builder.ToTable("User");
 
-		    builder.HasKey(c => c.Id);
+            builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Name.GetFirstName())
+            builder.OwnsOne(e => e.Name, name =>
+            {
+                name.Property(e => e.First).HasColumnName("FirstName");
+
+                name.Property(e => e.Last).HasColumnName("LastName");
+            });
+
+            /*
+            builder.Property(c => c.Name.First)
                 .IsRequired()
                 .HasColumnName("FirstName");
+             */
 
-            builder.Property(c => c.Name.GetLastName())
+            /*builder.Property(c => c.Name.Last)
                 .IsRequired()
-                .HasColumnName("LastName");
+                .HasColumnName("LastName");*/
 
             builder.Property<string>(c => c.Email)
                 .IsRequired()
