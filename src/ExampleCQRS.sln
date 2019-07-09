@@ -1,29 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Presentation", "1.Presentation", "{4898FC3C-0D53-48C9-BF67-0C1B04DA3A2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.Web", "1.Presentation\ExampleCQRS.Web\ExampleCQRS.Web.csproj", "{FAEE7444-FC9A-480E-8868-C719A6520F8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleCQRS.Web", "1.Presentation\ExampleCQRS.Web\ExampleCQRS.Web.csproj", "{FAEE7444-FC9A-480E-8868-C719A6520F8B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Application", "2.Application", "{FF5AB37D-02F2-4C79-9FD1-7CFC1477015C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.Application", "2.Application\ExampleCQRS.Application\ExampleCQRS.Application.csproj", "{93352A72-6910-4D66-BC07-78FE8665E8BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleCQRS.Application", "2.Application\ExampleCQRS.Application\ExampleCQRS.Application.csproj", "{93352A72-6910-4D66-BC07-78FE8665E8BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Domain", "3.Domain", "{D1217159-8A68-406E-A889-20B7235560D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.Domain", "3.Domain\ExampleCQRS.Domain\ExampleCQRS.Domain.csproj", "{0E0A8191-8A95-4BFE-8F74-925B7BAF81A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleCQRS.Domain", "3.Domain\ExampleCQRS.Domain\ExampleCQRS.Domain.csproj", "{0E0A8191-8A95-4BFE-8F74-925B7BAF81A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.Domain.Core", "3.Domain\ExampleCQRS.Domain.Core\ExampleCQRS.Domain.Core.csproj", "{A1043288-8D1C-4362-B29F-5B6413C1E798}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleCQRS.Domain.Core", "3.Domain\ExampleCQRS.Domain.Core\ExampleCQRS.Domain.Core.csproj", "{A1043288-8D1C-4362-B29F-5B6413C1E798}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Infrastructure", "4.Infrastructure", "{A80CD821-1E4F-4A8D-8313-8B43177132AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.Bus", "4.Infrastructure\ExampleCQRS.Bus\ExampleCQRS.Bus.csproj", "{A2C8C1F0-8739-439F-A368-6AC81459CA38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleCQRS.IoC", "4.Infrastructure\ExampleCQRS.IoC\ExampleCQRS.IoC.csproj", "{B1350C5D-B119-47FF-91A8-016B86F53A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.IoC", "4.Infrastructure\ExampleCQRS.IoC\ExampleCQRS.IoC.csproj", "{B1350C5D-B119-47FF-91A8-016B86F53A11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleCQRS.Repository", "4.Infrastructure\ExampleCQRS.Repository\ExampleCQRS.Repository.csproj", "{70983513-F35A-4960-BB13-92BAFAA9FAE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.Repository", "4.Infrastructure\ExampleCQRS.Repository\ExampleCQRS.Repository.csproj", "{70983513-F35A-4960-BB13-92BAFAA9FAE9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.CrossCutting", "5.CrossCutting", "{84EF1472-EC24-43ED-8ED2-7D133E0D97CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCQRS.CrossCutting", "5.CrossCutting\ExampleCQRS.CrossCutting\ExampleCQRS.CrossCutting.csproj", "{55372E14-6458-4D21-B23A-25DB8539DFAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FAEE7444-FC9A-480E-8868-C719A6520F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -86,18 +85,6 @@ Global
 		{A1043288-8D1C-4362-B29F-5B6413C1E798}.Release|x64.Build.0 = Release|Any CPU
 		{A1043288-8D1C-4362-B29F-5B6413C1E798}.Release|x86.ActiveCfg = Release|Any CPU
 		{A1043288-8D1C-4362-B29F-5B6413C1E798}.Release|x86.Build.0 = Release|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Debug|x64.Build.0 = Debug|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Debug|x86.Build.0 = Debug|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Release|x64.ActiveCfg = Release|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Release|x64.Build.0 = Release|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Release|x86.ActiveCfg = Release|Any CPU
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38}.Release|x86.Build.0 = Release|Any CPU
 		{B1350C5D-B119-47FF-91A8-016B86F53A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1350C5D-B119-47FF-91A8-016B86F53A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1350C5D-B119-47FF-91A8-016B86F53A11}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -122,14 +109,32 @@ Global
 		{70983513-F35A-4960-BB13-92BAFAA9FAE9}.Release|x64.Build.0 = Release|Any CPU
 		{70983513-F35A-4960-BB13-92BAFAA9FAE9}.Release|x86.ActiveCfg = Release|Any CPU
 		{70983513-F35A-4960-BB13-92BAFAA9FAE9}.Release|x86.Build.0 = Release|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Debug|x64.Build.0 = Debug|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Debug|x86.Build.0 = Debug|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Release|x64.ActiveCfg = Release|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Release|x64.Build.0 = Release|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Release|x86.ActiveCfg = Release|Any CPU
+		{55372E14-6458-4D21-B23A-25DB8539DFAC}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FAEE7444-FC9A-480E-8868-C719A6520F8B} = {4898FC3C-0D53-48C9-BF67-0C1B04DA3A2F}
 		{93352A72-6910-4D66-BC07-78FE8665E8BA} = {FF5AB37D-02F2-4C79-9FD1-7CFC1477015C}
 		{0E0A8191-8A95-4BFE-8F74-925B7BAF81A2} = {D1217159-8A68-406E-A889-20B7235560D1}
 		{A1043288-8D1C-4362-B29F-5B6413C1E798} = {D1217159-8A68-406E-A889-20B7235560D1}
-		{A2C8C1F0-8739-439F-A368-6AC81459CA38} = {A80CD821-1E4F-4A8D-8313-8B43177132AB}
 		{B1350C5D-B119-47FF-91A8-016B86F53A11} = {A80CD821-1E4F-4A8D-8313-8B43177132AB}
 		{70983513-F35A-4960-BB13-92BAFAA9FAE9} = {A80CD821-1E4F-4A8D-8313-8B43177132AB}
+		{55372E14-6458-4D21-B23A-25DB8539DFAC} = {84EF1472-EC24-43ED-8ED2-7D133E0D97CC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C343926A-6704-4EAF-B61B-CDB6E2E33278}
 	EndGlobalSection
 EndGlobal
