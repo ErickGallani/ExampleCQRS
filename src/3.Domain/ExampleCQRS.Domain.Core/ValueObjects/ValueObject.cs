@@ -2,9 +2,12 @@ namespace ExampleCQRS.Domain.Core.ValueObjects
 {
     using System.Collections.Generic;
     using System.Linq;
+    using FluentValidation;
 
-    public abstract class ValueObject
+    public abstract class ValueObject<T>
     {
+        public abstract IValidator<T> GetValidator();
+
         public abstract IEnumerable<object> GetValues();
 
         public override bool Equals(object other) 
@@ -14,7 +17,7 @@ namespace ExampleCQRS.Domain.Core.ValueObjects
                 return false;
             }
 
-            var otherObject = other as ValueObject;
+            var otherObject = other as ValueObject<T>;
 
             IEnumerator<object> thisValues = GetValues().GetEnumerator();
             IEnumerator<object> otherValues = otherObject.GetValues().GetEnumerator();
@@ -42,10 +45,10 @@ namespace ExampleCQRS.Domain.Core.ValueObjects
             .Select(x => x != null ? x.GetHashCode() : 0)
             .Aggregate((x, y) => x ^ y);
 
-        public static bool operator == (ValueObject leftObject, ValueObject rightObject) => 
+        public static bool operator == (ValueObject<T> leftObject, ValueObject<T> rightObject) => 
             leftObject.Equals(rightObject);
 
-        public static bool operator != (ValueObject leftObject, ValueObject rightObject) => 
+        public static bool operator != (ValueObject<T> leftObject, ValueObject<T> rightObject) => 
             !leftObject.Equals(rightObject);
     }
 }

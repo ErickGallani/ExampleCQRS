@@ -1,12 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.4.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ExampleCQRS.Domain.Core\ExampleCQRS.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\5.CrossCutting\ExampleCQRS.CrossCutting\ExampleCQRS.CrossCutting.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

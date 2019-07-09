@@ -1,6 +1,15 @@
 ﻿namespace ExampleCQRS.Application.Extensions.DependencyInjection
 {
-    public class ServiceCollectionExtensions
+    using ExampleCQRS.Application.Interfaces;
+    using ExampleCQRS.Application.Services;
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class ServiceCollectionExtensions
     {
+        public static void AddServices(this IServiceCollection services)
+        {
+            // User service
+            services.AddScoped<IUserService, UserService>();
+        }
     }
 }
