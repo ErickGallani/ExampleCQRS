@@ -1,5 +1,6 @@
 ﻿namespace ExampleCQRS.Domain.Commands.User
 {
+    using System;
     using System.Threading.Tasks;
     using ExampleCQRS.Domain.Validations.User;
     using ExampleCQRS.Domain.ValueObjects;
@@ -9,6 +10,7 @@
     {
         public InsertUserCommand(Name name, Email email, BirthDate birthDate)
         {
+            this.Id = Guid.NewGuid();
             this.Name = name;
             this.Email = email;
             this.BirthDate = birthDate;

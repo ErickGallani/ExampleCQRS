@@ -1,9 +1,11 @@
-﻿using System;
-
-namespace ExampleCQRS.Application.Dtos
+﻿namespace ExampleCQRS.Application.Dtos
 {
+    using System;
+    
     public class UserDto
     {
+        public Guid Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

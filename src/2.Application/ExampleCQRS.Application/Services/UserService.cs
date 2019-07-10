@@ -6,6 +6,7 @@ namespace ExampleCQRS.Application.Services
     using ExampleCQRS.Application.Interfaces;
     using ExampleCQRS.Domain.Commands.User;
     using ExampleCQRS.Domain.Core.Bus;
+    using ExampleCQRS.Domain.ValueObjects;
 
     public class UserService : IUserService
     {
@@ -18,11 +19,13 @@ namespace ExampleCQRS.Application.Services
 
         public async Task<bool> InsertAsync(UserDto userDto)
         {
-            var userAdapter = new UserDtoToUserAdapter();
+            var name = new Name(userDto.FirstName, userDto.LastName);
 
-            var user = userAdapter.Adapt(userDto);
+            var email = new Email(userDto.Email);
+            
+            var birthDate = new BirthDate(userDto.BirthDate);
 
-            var insertUserCommand = new InsertUserCommand(user.Name, user.Email, user.BirthDate);
+            var insertUserCommand = new InsertUserCommand(name, email, birthDate);
 
             return await this.commandSender.SendCommandAsync(insertUserCommand);
         }

@@ -6,6 +6,10 @@ namespace ExampleCQRS.Repository.Context
 
     public class CQRSContext : DbContext
     {
+        public CQRSContext(DbContextOptions<CQRSContext> options)
+            : base(options)
+        { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if(!optionsBuilder.IsConfigured)

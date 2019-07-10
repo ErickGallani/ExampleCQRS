@@ -2,14 +2,17 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using ExampleCQRS.Domain.Core.Interfaces;
+    using ExampleCQRS.Domain.Adapters;
+    using ExampleCQRS.Domain.Interfaces;
 
     public class UserCommandHandler : 
         CommandHandler<InsertUserCommand>
     {
-        public UserCommandHandler()
-        {
+        private readonly IUserRepository userRepository;
 
+        public UserCommandHandler(IUserRepository userRepository)
+        {
+            this.userRepository = userRepository;
         }
 
         public override async Task<bool> Handle(InsertUserCommand request, CancellationToken cancellationToken) =>
@@ -20,11 +23,25 @@
             return Task.FromResult(false);
         }
 
-        private Task<bool> OnSuccess()
+        private async Task<bool> OnSuccess(InsertUserCommand request)
         {
-            // save on the repository
+            if (request is null)
+            {
+                return false;
+            }
+            
+            var adapter = new InsertUserCommandToUserAdapter();
+            
+            var user = adapter.Adapt(request);
 
-            return Task.FromResult(true);
+            if (user is null)
+            {
+                return false;
+            }
+
+            await this.userRepository.InserAsync(user);
+
+            return await Task.FromResult(true);
         }
     }
 }

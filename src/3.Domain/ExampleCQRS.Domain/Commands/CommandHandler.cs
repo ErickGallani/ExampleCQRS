@@ -7,7 +7,7 @@ namespace ExampleCQRS.Domain.Commands
     public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand>
         where TCommand : Command
     {
-        public delegate Task<bool> OnSuccessAsync();
+        public delegate Task<bool> OnSuccessAsync(TCommand command);
 
         public delegate Task<bool> OnInvalidAsync();
 
@@ -23,7 +23,7 @@ namespace ExampleCQRS.Domain.Commands
                 return await onInvalidAsync();
             }
 
-            return await onSuccessAsync();
+            return await onSuccessAsync(command);
         }
 
         public abstract Task<bool> Handle(TCommand request, CancellationToken cancellationToken);

@@ -17,22 +17,22 @@ namespace ExampleCQRS.Repository.Repositories
             this.context = context;
         }
 
-        public async Task AddAsync(T entity)
+        public async Task<int> AddAsync(T entity)
         {
             context.Set<T>().Add(entity);
-            await context.SaveChangesAsync();
+            return await context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<int> DeleteAsync(T entity)
         {
             context.Set<T>().Remove(entity);
-            await context.SaveChangesAsync();
+            return await context.SaveChangesAsync();
         }
 
-        public async Task EditAsync(T entity)
+        public async Task<int> EditAsync(T entity)
         {
             context.Entry(entity).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            return await context.SaveChangesAsync();
         }
 
         public async Task<T> GetByIdAsync(Guid id) => 

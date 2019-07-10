@@ -9,10 +9,10 @@ namespace ExampleCQRS.Repository.Interfaces
     {
         Task<T> GetByIdAsync(Guid id);
         
-        Task AddAsync(T entity);
+        Task<int> AddAsync(T entity);
         
-        Task DeleteAsync(T entity);
+        Task<int> DeleteAsync(T entity);
         
-        Task EditAsync(T entity);
+        Task<int> EditAsync(T entity);
     }
 }

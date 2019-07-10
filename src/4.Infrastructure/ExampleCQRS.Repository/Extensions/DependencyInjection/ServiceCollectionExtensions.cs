@@ -1,7 +1,7 @@
 namespace ExampleCQRS.Repository.Extensions.DependencyInjection
 {
+    using ExampleCQRS.Domain.Interfaces;
     using ExampleCQRS.Repository.Context;
-    using ExampleCQRS.Repository.Interfaces;
     using ExampleCQRS.Repository.Repositories;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;

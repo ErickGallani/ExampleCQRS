@@ -8,9 +8,9 @@ namespace ExampleCQRS.Domain.Entities
     {
         private User() { }
 
-        public User(Name name, Email email, BirthDate birthDate)
+        public User(Guid id, Name name, Email email, BirthDate birthDate)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Name = name;
             Email = email;
             BirthDate = birthDate;
