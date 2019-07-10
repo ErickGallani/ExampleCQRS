@@ -7,10 +7,12 @@ namespace ExampleCQRS.Domain.ValueObjects
 
     public class Email : ValueObject<Email>
     {
-        private readonly string EmailValue;
+        private Email() { }
 
         public Email(string emailValue) => 
             this.EmailValue = emailValue;
+
+        public string EmailValue { get; private set; }
 
         public override IValidator<Email> GetValidator() =>
             new EmailValidation();

@@ -13,6 +13,6 @@ namespace ExampleCQRS.Domain.Validations.ValueObjects
             RuleFor(birthDate => birthDate)
                 .NotNull()
                 .Must((birthDate) => birthDate > new DateTime(1900, 1, 1))
-                .WithErrorCode("");
+                .WithErrorCode("Invalid birth date");
     }
 }

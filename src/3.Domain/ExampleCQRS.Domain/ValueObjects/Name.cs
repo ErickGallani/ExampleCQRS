@@ -6,10 +6,8 @@ namespace ExampleCQRS.Domain.ValueObjects
     using FluentValidation;
 
     public class Name : ValueObject<Name>
-    {    
-        private readonly string FirstName;
-        
-        private readonly string LastName;
+    {
+        private Name() { }
 
         public Name(string firstName, string lastName) 
         {
@@ -17,11 +15,9 @@ namespace ExampleCQRS.Domain.ValueObjects
             this.LastName = lastName;
         }
 
-        public string First => 
-            this.FirstName;
-
-        public string Last => 
-            this.LastName;
+        public string FirstName { get; private set; }
+        
+        public string LastName { get; private set; }
 
         public override IValidator<Name> GetValidator() =>
             new NameValidation();

@@ -13,6 +13,6 @@ namespace ExampleCQRS.Domain.Validations.ValueObjects
                 .NotNull()
                 .NotEmpty()
                 .Length(1, 150)
-                .WithErrorCode("-");
+                .WithMessage("Invalid name");
     }
 }

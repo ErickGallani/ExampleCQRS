@@ -15,27 +15,28 @@ namespace ExampleCQRS.Repository.Mappings
 
             builder.OwnsOne(e => e.Name, name =>
             {
-                name.Property(e => e.First).HasColumnName("FirstName");
+                name.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasColumnName("FirstName");
 
-                name.Property(e => e.Last).HasColumnName("LastName");
+                name.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasColumnName("LastName");
+            });
+            
+            builder.OwnsOne(e => e.Email, name =>
+            {
+                name.Property(e => e.EmailValue)
+                    .IsRequired()
+                    .HasColumnName("Email");
             });
 
-            /*
-            builder.Property(c => c.Name.First)
-                .IsRequired()
-                .HasColumnName("FirstName");
-             */
-
-            /*builder.Property(c => c.Name.Last)
-                .IsRequired()
-                .HasColumnName("LastName");*/
-
-            builder.Property<string>(c => c.Email)
-                .IsRequired()
-                .HasColumnName("Email");
-            
-            builder.Property<DateTime>(c => c.BirthDate)
-                .HasColumnName("BirthDate");
+            builder.OwnsOne(e => e.BirthDate, name =>
+            {
+                name.Property(e => e.DateOfBirth)
+                    .IsRequired()
+                    .HasColumnName("BirthDate");
+            });
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("CreatedAt");

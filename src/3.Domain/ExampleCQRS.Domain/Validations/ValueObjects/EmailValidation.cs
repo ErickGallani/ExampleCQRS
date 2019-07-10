@@ -10,6 +10,7 @@ namespace ExampleCQRS.Domain.Validations.ValueObjects
 
         private void AddValidateEmailValue() =>
             RuleFor<string>(email => email)
-                .EmailAddress().WithErrorCode("-");
+                .EmailAddress()
+                .WithMessage("Invalid email");
     }
 }

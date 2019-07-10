@@ -8,10 +8,12 @@ namespace ExampleCQRS.Domain.ValueObjects
 
     public class BirthDate : ValueObject<BirthDate>
     {
-        private readonly DateTime DateOfBirth;
+        private BirthDate() { }
 
         public BirthDate(DateTime birthDate) => 
             this.DateOfBirth = birthDate;
+
+        public DateTime DateOfBirth { get; private set; }
 
         public override IValidator<BirthDate> GetValidator() =>
             new BirthDateValidation();

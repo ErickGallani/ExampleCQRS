@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2.Application\ExampleCQRS.Application\ExampleCQRS.Application.csproj" />
+    <ProjectReference Include="..\..\3.Domain\ExampleCQRS.Domain\ExampleCQRS.Domain.csproj" />
+    <ProjectReference Include="..\..\4.Infrastructure\ExampleCQRS.Repository\ExampleCQRS.Repository.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+</Project>

@@ -6,10 +6,12 @@
 
     public static class ServiceCollectionExtensions
     {
-        public static void AddServices(this IServiceCollection services)
+        public static IServiceCollection AddServices(this IServiceCollection services)
         {
             // User service
             services.AddScoped<IUserService, UserService>();
+
+            return services;
         }
     }
 }

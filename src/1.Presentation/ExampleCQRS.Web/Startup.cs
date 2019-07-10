@@ -1,13 +1,17 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace ExampleCQRS.Web
 {
+    using System.Reflection;
+    using ExampleCQRS.IoC;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.HttpsPolicy;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using MediatR;
+    
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -27,6 +31,10 @@ namespace ExampleCQRS.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+
+            DependencyInjectionBootstrap.Setup(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

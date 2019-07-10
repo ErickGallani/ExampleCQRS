@@ -1,9 +1,11 @@
 namespace ExampleCQRS.Application.Services
 {
     using System.Threading.Tasks;
+    using ExampleCQRS.Application.Adapters;
+    using ExampleCQRS.Application.Dtos;
     using ExampleCQRS.Application.Interfaces;
+    using ExampleCQRS.Domain.Commands.User;
     using ExampleCQRS.Domain.Core.Bus;
-    using ExampleCQRS.Domain.Core.Interfaces;
 
     public class UserService : IUserService
     {
@@ -14,9 +16,15 @@ namespace ExampleCQRS.Application.Services
             this.commandSender = commandSender;
         }
 
-        public async Task<bool> Insert()
+        public async Task<bool> InsertAsync(UserDto userDto)
         {
-            return await this.commandSender.SendCommandAsync(null as ICommand);
+            var userAdapter = new UserDtoToUserAdapter();
+
+            var user = userAdapter.Adapt(userDto);
+
+            var insertUserCommand = new InsertUserCommand(user.Name, user.Email, user.BirthDate);
+
+            return await this.commandSender.SendCommandAsync(insertUserCommand);
         }
     }
 }

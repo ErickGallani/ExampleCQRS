@@ -6,8 +6,11 @@ namespace ExampleCQRS.Domain.Entities
 
     public class User : Entity
     {
+        private User() { }
+
         public User(Name name, Email email, BirthDate birthDate)
         {
+            Id = Guid.NewGuid();
             Name = name;
             Email = email;
             BirthDate = birthDate;

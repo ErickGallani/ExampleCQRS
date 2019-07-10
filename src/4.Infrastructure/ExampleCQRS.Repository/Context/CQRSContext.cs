@@ -10,7 +10,7 @@ namespace ExampleCQRS.Repository.Context
         {
             if(!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("Server=[HOST];Port=[PORT];Database=modelo;Uid=[USER];Pwd=[PASSWORD]");
+                optionsBuilder.UseMySql("Server=localhost;Port=3306;Database=examplecqrs;Uid=cqrs;Pwd=password");
             }
         }
 
