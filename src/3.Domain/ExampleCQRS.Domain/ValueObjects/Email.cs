@@ -9,20 +9,20 @@ namespace ExampleCQRS.Domain.ValueObjects
     {
         private Email() { }
 
-        public Email(string emailValue) => 
-            this.EmailValue = emailValue;
+        public Email(string value) => 
+            this.Value = value;
 
-        public string EmailValue { get; private set; }
+        public string Value { get; private set; }
 
         public override IValidator<Email> GetValidator() =>
             new EmailValidation();
 
         public override IEnumerable<object> GetValues()
         {
-            yield return EmailValue; 
+            yield return Value; 
         }
 
         public static implicit operator string(Email email) =>
-            email.EmailValue;
+            email.Value;
     }
 }

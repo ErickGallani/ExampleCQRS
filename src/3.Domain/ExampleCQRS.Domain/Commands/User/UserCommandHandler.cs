@@ -24,22 +24,18 @@
         }
 
         private async Task<bool> OnSuccess(InsertUserCommand request)
-        {
-            if (request is null)
-            {
+        {   
+            if(await this.userRepository.GetByEmailAsync(request.Email) != null)
                 return false;
-            }
-            
+
             var adapter = new InsertUserCommandToUserAdapter();
             
             var user = adapter.Adapt(request);
 
             if (user is null)
-            {
                 return false;
-            }
 
-            await this.userRepository.InserAsync(user);
+            await this.userRepository.InsertAsync(user);
 
             return await Task.FromResult(true);
         }

@@ -19,9 +19,7 @@ namespace ExampleCQRS.Domain.Commands
             var validationResult = await command.IsValidAsync();
 
             if(!validationResult.IsValid)
-            {
                 return await onInvalidAsync();
-            }
 
             return await onSuccessAsync(command);
         }

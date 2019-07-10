@@ -26,14 +26,14 @@ namespace ExampleCQRS.Repository.Mappings
             
             builder.OwnsOne(e => e.Email, name =>
             {
-                name.Property(e => e.EmailValue)
+                name.Property(e => e.Value)
                     .IsRequired()
                     .HasColumnName("Email");
             });
 
             builder.OwnsOne(e => e.BirthDate, name =>
             {
-                name.Property(e => e.DateOfBirth)
+                name.Property(e => e.Value)
                     .IsRequired()
                     .HasColumnName("BirthDate");
             });

@@ -10,20 +10,20 @@ namespace ExampleCQRS.Domain.ValueObjects
     {
         private BirthDate() { }
 
-        public BirthDate(DateTime birthDate) => 
-            this.DateOfBirth = birthDate;
+        public BirthDate(DateTime value) => 
+            this.Value = value;
 
-        public DateTime DateOfBirth { get; private set; }
+        public DateTime Value { get; private set; }
 
         public override IValidator<BirthDate> GetValidator() =>
             new BirthDateValidation();
 
         public override IEnumerable<object> GetValues() 
         {
-            yield return this.DateOfBirth;
+            yield return this.Value;
         }
 
         public static implicit operator DateTime(BirthDate birthDate) =>
-            birthDate.DateOfBirth;
+            birthDate.Value;
     }
 }

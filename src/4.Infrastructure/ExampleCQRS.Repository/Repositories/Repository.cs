@@ -17,7 +17,7 @@ namespace ExampleCQRS.Repository.Repositories
             this.context = context;
         }
 
-        public async Task<int> AddAsync(T entity)
+        public async Task<int> InsertAsync(T entity)
         {
             context.Set<T>().Add(entity);
             return await context.SaveChangesAsync();
@@ -29,7 +29,7 @@ namespace ExampleCQRS.Repository.Repositories
             return await context.SaveChangesAsync();
         }
 
-        public async Task<int> EditAsync(T entity)
+        public async Task<int> UpdateAsync(T entity)
         {
             context.Entry(entity).State = EntityState.Modified;
             return await context.SaveChangesAsync();
