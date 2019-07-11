@@ -9,20 +9,14 @@ namespace ExampleCQRS.ErrorLogger
     {
         private readonly ILogger logger;
 
-        public LogError(ILogger logger)
-        {
-            this.logger = logger;
-        }
+        public LogError(ILoggerFactory loggerFactory) => 
+            this.logger = loggerFactory.CreateLogger<ErrorNotification>();
 
-        public Task LogAsync(ErrorNotification errorNotification)
-        {
-            return Task.Run(() => {
-                this.logger?.LogError(
-                    errorNotification.Message, 
-                    errorNotification.Code,
-                    errorNotification.EventId,
-                    errorNotification.Timestamp);
-            });
-        }
+        public Task LogAsync(ErrorNotification errorNotification) => 
+            Task.Run(() => this.logger?.LogError(
+                errorNotification.Message,
+                errorNotification.Code,
+                errorNotification.EventId,
+                errorNotification.Timestamp));
     }
 }

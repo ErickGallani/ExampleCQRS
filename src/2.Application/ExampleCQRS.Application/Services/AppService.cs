@@ -14,15 +14,15 @@ namespace ExampleCQRS.Application.Services
         {
             if(IsValidOperation())
             {
-                var errors = 
+                return new ServiceResponse(ServiceResponseStatus.Success, null);
+            }
+
+            var errors =
                     errorNotificationHandler
                         .GetNotifications()
                         .Select(e => new Error(e.Code, e.Message));
 
-                return new ServiceResponse(ServiceResponseStatus.Error, errors);
-            }
-
-            return new ServiceResponse(ServiceResponseStatus.Success, null);
+            return new ServiceResponse(ServiceResponseStatus.Error, errors);
         }
 
         public AppService(IErrorNotificationHandler errorNotificationHandler) => 
