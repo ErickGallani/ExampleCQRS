@@ -3,6 +3,7 @@ namespace ExampleCQRS.Application.Services
     using System.Threading.Tasks;
     using ExampleCQRS.Application.Adapters;
     using ExampleCQRS.Application.Dtos;
+    using ExampleCQRS.Application.Enums;
     using ExampleCQRS.Application.Interfaces;
     using ExampleCQRS.Domain.Commands.User;
     using ExampleCQRS.Domain.Core.Bus;
@@ -21,7 +22,7 @@ namespace ExampleCQRS.Application.Services
             this.commandSender = commandSender;
         }
 
-        public async Task<bool> InsertAsync(UserDto userDto)
+        public async Task<ServiceResponse> InsertAsync(UserDto userDto)
         {
             var name = new Name(userDto.FirstName, userDto.LastName);
 
@@ -31,13 +32,9 @@ namespace ExampleCQRS.Application.Services
 
             var insertUserCommand = new InsertUserCommand(name, email, birthDate);
 
-            var result = await this.commandSender.SendCommandAsync(insertUserCommand);
+            await this.commandSender.SendCommandAsync(insertUserCommand);
 
-            if(!result) {
-                var errors = GetErrors();
-            }
-
-            return result;
+            return GetResponse();
         }
     }
 }

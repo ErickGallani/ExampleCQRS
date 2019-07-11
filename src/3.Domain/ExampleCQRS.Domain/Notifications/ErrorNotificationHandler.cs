@@ -10,15 +10,20 @@ namespace ExampleCQRS.Domain.Notifications
     public class ErrorNotificationHandler : IErrorNotificationHandler, IDisposable
     {
         private IList<ErrorNotification> notifications;
+        private readonly ILogError logError;
 
-        public ErrorNotificationHandler() => 
-            notifications = new List<ErrorNotification>();
-
-        public Task Handle(ErrorNotification notification, CancellationToken cancellationToken)
+        public ErrorNotificationHandler(ILogError logError)
         {
-            notifications.Add(notification);
+            notifications = new List<ErrorNotification>();
+            
+            this.logError = logError;
+        }
 
-            return Task.CompletedTask;
+        public async Task Handle(ErrorNotification notification, CancellationToken cancellationToken)
+        {
+            await this.logError.LogAsync(notification);
+
+            notifications.Add(notification);
         }
 
         public IList<ErrorNotification> GetNotifications() => notifications;

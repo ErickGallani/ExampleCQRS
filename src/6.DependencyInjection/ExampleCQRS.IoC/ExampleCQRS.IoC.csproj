@@ -8,6 +8,7 @@
     <ProjectReference Include="..\..\2.Application\ExampleCQRS.Application\ExampleCQRS.Application.csproj" />
     <ProjectReference Include="..\..\3.Domain\ExampleCQRS.Domain\ExampleCQRS.Domain.csproj" />
     <ProjectReference Include="..\..\4.Infrastructure\ExampleCQRS.Repository\ExampleCQRS.Repository.csproj" />
+    <ProjectReference Include="..\..\4.Infrastructure\ExampleCQRS.ErrorLogger\ExampleCQRS.ErrorLogger.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -4,13 +4,12 @@ namespace ExampleCQRS.Web
     using ExampleCQRS.IoC;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using MediatR;
-    
+    using Microsoft.Extensions.Logging;
 
     public class Startup
     {
@@ -38,7 +37,7 @@ namespace ExampleCQRS.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {

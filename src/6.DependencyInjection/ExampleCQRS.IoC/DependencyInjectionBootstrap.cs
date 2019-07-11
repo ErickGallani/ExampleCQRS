@@ -2,6 +2,7 @@ namespace ExampleCQRS.IoC
 {
     using ExampleCQRS.Application.Extensions.DependencyInjection;
     using ExampleCQRS.Domain.Extensions.DependencyInjection;
+    using ExampleCQRS.ErrorLogger.Extensions.DependencyInjection;
     using ExampleCQRS.Repository.Extensions.DependencyInjection;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ namespace ExampleCQRS.IoC
             services
                 .AddCommands()
                 .AddServices()
+                .AddErrorLogger()
                 .AddRepositories(configuration);
         }
     }

@@ -5,7 +5,5 @@ namespace ExampleCQRS.Application.Interfaces
     public interface IAppService
     {
         bool IsValidOperation();
-
-        IEnumerable<object> GetErrors();
     }
 }

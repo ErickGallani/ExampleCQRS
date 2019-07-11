@@ -22,8 +22,8 @@
             base(eventPublisher) => 
             this.userRepository = userRepository;
 
-        public override async Task<bool> Handle(InsertUserCommand request, CancellationToken cancellationToken) =>
-            await ExecuteHandlerAsync(request, OnSuccess, OnInvalid);
+        public override Task<bool> Handle(InsertUserCommand request, CancellationToken cancellationToken) =>
+            ExecuteHandlerAsync(request, OnSuccess, OnInvalid);
 
         private async Task<bool> OnInvalid(ValidationResult validationResult)
         {
@@ -59,7 +59,7 @@
 
             await this.userRepository.InsertAsync(user);
 
-            return await Task.FromResult(true);
+            return true;
         }
         
     }

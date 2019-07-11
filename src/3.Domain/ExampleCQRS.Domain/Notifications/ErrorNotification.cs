@@ -1,7 +1,5 @@
 namespace ExampleCQRS.Domain.Notifications
 {
-    using System;
-    using ExampleCQRS.CrossCutting.ErrorCodes;
     using ExampleCQRS.Domain.Core.Events;
 
     public class ErrorNotification : Event

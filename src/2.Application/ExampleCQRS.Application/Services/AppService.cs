@@ -1,6 +1,8 @@
 namespace ExampleCQRS.Application.Services
 {
-    using System.Collections.Generic;
+    using System.Linq;
+    using ExampleCQRS.Application.Enums;
+    using ExampleCQRS.Application.Errors;
     using ExampleCQRS.Application.Interfaces;
     using ExampleCQRS.Domain.Interfaces;
 
@@ -8,22 +10,25 @@ namespace ExampleCQRS.Application.Services
     {
         private readonly IErrorNotificationHandler errorNotificationHandler;
 
-        public AppService(IErrorNotificationHandler errorNotificationHandler)
+        protected ServiceResponse GetResponse() 
         {
+            if(IsValidOperation())
+            {
+                var errors = 
+                    errorNotificationHandler
+                        .GetNotifications()
+                        .Select(e => new Error(e.Code, e.Message));
+
+                return new ServiceResponse(ServiceResponseStatus.Error, errors);
+            }
+
+            return new ServiceResponse(ServiceResponseStatus.Success, null);
+        }
+
+        public AppService(IErrorNotificationHandler errorNotificationHandler) => 
             this.errorNotificationHandler = errorNotificationHandler;
-        }
 
-        public bool IsValidOperation()
-        {
-            return (!errorNotificationHandler.HasNotifications());
-        }
-
-        public IEnumerable<object> GetErrors()
-        {
-            //TODO: Implement Adapter pattern to tranform ErrorNotification from Domain to type for Presentation
-
-            return errorNotificationHandler.GetNotifications();
-        }
-
+        public bool IsValidOperation() => 
+            (!errorNotificationHandler.HasNotifications());
     }
 }
