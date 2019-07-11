@@ -2,6 +2,7 @@ namespace ExampleCQRS.Domain.Validations.User
 {
     using System;
     using ExampleCQRS.CrossCutting.ErrorCodes;
+    using ExampleCQRS.CrossCutting.Extensions;
     using ExampleCQRS.Domain.Commands.User;
     using FluentValidation;
 

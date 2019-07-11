@@ -1,16 +1,11 @@
 namespace ExampleCQRS.CrossCutting.ErrorCodes
 {
-    using System;
-    using System.Globalization;
-
-    public static class UserError 
+    public static class UserError
     {
         public enum Code
         {
-            InvalidUserId = 1050
+            InvalidUserId = 1050,
+            UserAlreadyExists = 1051
         }
-
-        public static string GetString(this Code code) =>
-            Convert.ToString(code, CultureInfo.InvariantCulture);
     }
 }

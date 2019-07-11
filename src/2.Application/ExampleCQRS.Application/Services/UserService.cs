@@ -6,13 +6,17 @@ namespace ExampleCQRS.Application.Services
     using ExampleCQRS.Application.Interfaces;
     using ExampleCQRS.Domain.Commands.User;
     using ExampleCQRS.Domain.Core.Bus;
+    using ExampleCQRS.Domain.Interfaces;
     using ExampleCQRS.Domain.ValueObjects;
 
-    public class UserService : IUserService
+    public class UserService : AppService, IUserService
     {
         private readonly ICommandSender commandSender;
 
-        public UserService(ICommandSender commandSender)
+        public UserService(
+            ICommandSender commandSender, 
+            IErrorNotificationHandler errorNotificationHandler) : 
+            base(errorNotificationHandler)
         {
             this.commandSender = commandSender;
         }
@@ -27,7 +31,13 @@ namespace ExampleCQRS.Application.Services
 
             var insertUserCommand = new InsertUserCommand(name, email, birthDate);
 
-            return await this.commandSender.SendCommandAsync(insertUserCommand);
+            var result = await this.commandSender.SendCommandAsync(insertUserCommand);
+
+            if(!result) {
+                var errors = GetErrors();
+            }
+
+            return result;
         }
     }
 }
