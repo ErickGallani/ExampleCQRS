@@ -1,11 +1,13 @@
 ﻿namespace ExampleCQRS.Web.Controllers
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using ExampleCQRS.Application.Dtos;
+    using ExampleCQRS.Application.Enums;
     using ExampleCQRS.Application.Interfaces;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
 
     [Route("api/[controller]")]
     public class UserController : Controller
@@ -34,11 +36,18 @@
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult> Create([FromBody]UserDto user)
+        public async Task<IActionResult> Create([FromBody]UserDto user)
         {
             var result = await this.userService.InsertAsync(user);
 
-            return View();
+            if(result.Status == ServiceResponseStatus.Success)
+            {
+                return Ok();
+            }
+
+            var errors = JsonConvert.SerializeObject(result);
+
+            return BadRequest(errors);
         }
     }
 }

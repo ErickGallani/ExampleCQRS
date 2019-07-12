@@ -7,6 +7,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class User extends Component {
 
@@ -14,7 +16,9 @@ export class User extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        birthDate: null
+        birthDate: null,
+        errors: null,
+        success: false
     };
 
     onChangeHandler = (event) => {
@@ -31,20 +35,24 @@ export class User extends Component {
         axios.post('api/User/Create', {
             ...this.state
         })
-        .then(function (response) {
+        .then((response) => {
             console.log(response);
         })
-        .catch(function (error) {
-            console.log(error);
+        .catch((error) => {
+            error.response.data.Errors.forEach(error => {
+                toast.error(error.Message, {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            });
         });
     };
 
     render() {
         return (
             <div>
+                <ToastContainer/>
                 <Container maxWidth="sm">
                     <h1>Insert user</h1>
-
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
                             <FormControl>
