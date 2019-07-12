@@ -33,11 +33,12 @@
             return View();
         }
 
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public ActionResult Create(IFormCollection collection)
-        // {
-        //     return View();
-        // }
+        [HttpPost("[action]")]
+        public async Task<ActionResult> Create([FromBody]UserDto user)
+        {
+            var result = await this.userService.InsertAsync(user);
+
+            return View();
+        }
     }
 }
