@@ -5,6 +5,7 @@ namespace ExampleCQRS.Application.Services
     using ExampleCQRS.Application.Dtos;
     using ExampleCQRS.Application.Enums;
     using ExampleCQRS.Application.Interfaces;
+    using ExampleCQRS.Application.Services.Response;
     using ExampleCQRS.Domain.Commands.User;
     using ExampleCQRS.Domain.Core.Bus;
     using ExampleCQRS.Domain.Interfaces;

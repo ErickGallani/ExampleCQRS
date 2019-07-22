@@ -12,6 +12,6 @@ namespace ExampleCQRS.Domain.Validations.User
         protected void AddValidateUserId() =>
             RuleFor(user => user.Id)
                 .NotEqual(default(Guid))
-                .WithErrorCode(UserError.Code.InvalidUserId.GetString());
+                .WithErrorCode(Errors.UserErrorCode.InvalidUserId.GetString());
     }
 }

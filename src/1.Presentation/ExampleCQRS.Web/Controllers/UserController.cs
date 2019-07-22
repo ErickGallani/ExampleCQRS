@@ -1,7 +1,6 @@
 ﻿namespace ExampleCQRS.Web.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using ExampleCQRS.Application.Dtos;
     using ExampleCQRS.Application.Enums;
@@ -40,7 +39,7 @@
         {
             var result = await this.userService.InsertAsync(user);
 
-            if(result.Status == ServiceResponseStatus.Success)
+            if(result.Success())
             {
                 return Ok();
             }

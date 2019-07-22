@@ -1,16 +1,16 @@
-using System;
-using System.Collections.Generic;
-using ExampleCQRS.CrossCutting.ErrorCodes;
-
 namespace ExampleCQRS.CrossCutting.ErrorMappings
 {
-    public static class UserErrorMapping
+    using System;
+    using System.Collections.Generic;
+    using ExampleCQRS.CrossCutting.ErrorCodes;
+
+    public static partial class ErrorMapping
     {
-        public static IDictionary<Enum, string> Map => 
+        public static IDictionary<Enum, string> UserMap => 
             new Dictionary<Enum, string>()
             {
-                { UserError.Code.InvalidUserId, "Invalid user id" },
-                { UserError.Code.UserAlreadyExists, "An user with this email already exists" }
+                { Errors.UserErrorCode.InvalidUserId, "Invalid user id" },
+                { Errors.UserErrorCode.UserAlreadyExists, "An user with this email already exists" }
             };
     }
 }

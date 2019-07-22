@@ -1,5 +1,8 @@
 namespace ExampleCQRS.Domain.Validations.ValueObjects
 {
+    using ExampleCQRS.CrossCutting.ErrorCodes;
+    using ExampleCQRS.CrossCutting.ErrorMappings;
+    using ExampleCQRS.CrossCutting.Extensions;
     using ExampleCQRS.Domain.ValueObjects;
     using FluentValidation;
 
@@ -12,7 +15,10 @@ namespace ExampleCQRS.Domain.Validations.ValueObjects
             RuleFor<string>(name => name)
                 .NotNull()
                 .NotEmpty()
+                    .WithErrorCode(Errors.NameErrorCode.EmptyOrNullName.GetString())
+                    .WithMessage(ErrorMapping.NameMap[Errors.NameErrorCode.EmptyOrNullName])
                 .Length(1, 150)
-                .WithMessage("Invalid name");
+                    .WithErrorCode(Errors.NameErrorCode.InvalidName.GetString())
+                    .WithMessage(ErrorMapping.NameMap[Errors.NameErrorCode.InvalidName]);
     }
 }

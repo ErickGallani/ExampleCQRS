@@ -1,5 +1,8 @@
 namespace ExampleCQRS.Domain.Validations.ValueObjects
 {
+    using ExampleCQRS.CrossCutting.ErrorCodes;
+    using ExampleCQRS.CrossCutting.ErrorMappings;
+    using ExampleCQRS.CrossCutting.Extensions;
     using ExampleCQRS.Domain.ValueObjects;
     using FluentValidation;
 
@@ -10,7 +13,12 @@ namespace ExampleCQRS.Domain.Validations.ValueObjects
 
         private void AddValidateEmailValue() =>
             RuleFor<string>(email => email)
+                .NotNull()
+                .NotEmpty()
+                    .WithErrorCode(Errors.EmailErrorCode.EmptyOrNullEmail.GetString())
+                    .WithMessage(ErrorMapping.EmailMap[Errors.EmailErrorCode.EmptyOrNullEmail])
                 .EmailAddress()
-                .WithMessage("Invalid email");
+                    .WithErrorCode(Errors.EmailErrorCode.InvalidEmail.GetString())
+                    .WithMessage(ErrorMapping.EmailMap[Errors.EmailErrorCode.InvalidEmail]);
     }
 }

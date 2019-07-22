@@ -44,8 +44,8 @@
             {
                 await this.eventPublisher.PublishEventAsync(
                     new ErrorNotification(
-                        UserError.Code.UserAlreadyExists.GetString(), 
-                        UserErrorMapping.Map[UserError.Code.UserAlreadyExists]));
+                        Errors.UserErrorCode.UserAlreadyExists.GetString(), 
+                        ErrorMapping.UserMap[Errors.UserErrorCode.UserAlreadyExists]));
 
                 return false;
             }
